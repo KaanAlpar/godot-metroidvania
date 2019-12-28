@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const DustEffect = preload("res://Effects/DustEffect.tscn")
+const JumpEffect = preload("res://Effects/JumpEffect.tscn")
 const PlayerBullet = preload("res://Player/PlayerBullet.tscn")
 
 export (int) var ACCELERATION = 512
@@ -11,16 +12,21 @@ export (int) var JUMP_FORCE = 128
 export (int) var MAX_SLOPE_ANGLE = 46
 export (int) var BULLET_SPEED = 250
 
+var invincible = false setget set_invincible
 var motion = Vector2.ZERO
 var snap_vector = Vector2.ZERO
 var just_jumped = false
 
 onready var sprite = $Sprite
 onready var sprite_animator = $SpriteAnimator
+onready var blink_animator = $BlinkAnimator
 onready var coyote_jump_timer = $CoyoteJumpTimer
 onready var fire_bullet_timer = $FireBulletTimer
 onready var gun = $Sprite/PlayerGun
 onready var muzzle = $Sprite/PlayerGun/Sprite/Muzzle
+
+func set_invincible(value):
+	invincible = value
 
 func _physics_process(delta):
 	just_jumped = false
@@ -48,6 +54,9 @@ func create_dust_effect():
 	dust_position.x += rand_range(-4, 4)
 	Utils.instance_scene_on_main(DustEffect, dust_position)
 
+func create_jump_effect():
+	Utils.instance_scene_on_main(JumpEffect, global_position)	
+
 func get_input_vector():
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -70,6 +79,7 @@ func jump_check():
 	if is_on_floor() or coyote_jump_timer.time_left > 0:
 		if Input.is_action_just_pressed("ui_select"):
 			motion.y = -JUMP_FORCE
+			create_jump_effect()
 			just_jumped = true
 			snap_vector = Vector2.ZERO
 	else:
@@ -104,7 +114,7 @@ func move():
 	# Landing
 	if was_in_air and is_on_floor():
 		motion.x = last_motion.x
-		create_dust_effect()
+		create_jump_effect()
 		
 	# Just left ground
 	if was_on_floor and not is_on_floor() and not just_jumped:
@@ -116,6 +126,11 @@ func move():
 	if is_on_floor() and get_floor_velocity().length() == 0 and abs(motion.x) < 1:
 		position.x = last_position.x
 # End of move()
+
+func _on_Hurtbox_hit(damage):
+	if not invincible:
+		blink_animator.play("Blink")
+
 
 
 
