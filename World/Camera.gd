@@ -5,6 +5,7 @@ var shake = 0
 onready var timer = $Timer
 
 func _ready():
+# warning-ignore:return_value_discarded
 	Events.connect("add_screenshake", self, "_on_Events_add_screenshake")
 
 # warning-ignore:unused_argument
