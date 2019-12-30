@@ -72,7 +72,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 resource_name = "Wall Slide"
 length = 0.1
 loop = true
@@ -89,8 +89,7 @@ tracks/0/keys = {
 "values": [ 10 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Blink"
+[sub_resource type="Animation" id=5]
 length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:visible")
@@ -127,6 +126,7 @@ collision_mask = 2
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+editor/display_folded = true
 position = Vector2( 0, -12 )
 texture = ExtResource( 2 )
 hframes = 12
@@ -143,10 +143,10 @@ shape = ExtResource( 4 )
 anims/Idle = SubResource( 1 )
 anims/Jump = SubResource( 2 )
 anims/Run = SubResource( 3 )
-"anims/Wall Slide" = SubResource( 5 )
+"anims/Wall Slide" = SubResource( 6 )
 
 [node name="BlinkAnimator" type="AnimationPlayer" parent="."]
-anims/Blink = SubResource( 4 )
+anims/Blink = SubResource( 5 )
 
 [node name="CameraFollow" type="RemoteTransform2D" parent="."]
 position = Vector2( 0, -8 )
@@ -162,11 +162,21 @@ wait_time = 0.25
 one_shot = true
 
 [node name="Hurtbox" parent="." instance=ExtResource( 5 )]
+editor/display_folded = true
 collision_layer = 4
 
 [node name="Collider" parent="Hurtbox" index="0"]
 position = Vector2( 0, -7 )
 shape = ExtResource( 4 )
+
+[node name="PowerupDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerupDetector"]
+position = Vector2( 0, -7 )
+shape = ExtResource( 4 )
 [connection signal="hit" from="Hurtbox" to="." method="_on_Hurtbox_hit"]
+[connection signal="area_entered" from="PowerupDetector" to="." method="_on_PowerupDetector_area_entered"]
 
 [editable path="Hurtbox"]
