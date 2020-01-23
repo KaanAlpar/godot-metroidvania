@@ -1,6 +1,8 @@
 extends Area2D
 
+# warning-ignore:unused_class_variable
 export (Resource) var connection = null
+# warning-ignore:unused_class_variable
 export (String, FILE, "*.tscn") var new_level_path = ""
 
 var active = true

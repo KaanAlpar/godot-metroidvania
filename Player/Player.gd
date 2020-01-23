@@ -39,8 +39,9 @@ onready var coyote_jump_timer = $CoyoteJumpTimer
 onready var fire_bullet_timer = $FireBulletTimer
 onready var gun = $Sprite/PlayerGun
 onready var muzzle = $Sprite/PlayerGun/Sprite/Muzzle
-onready var powerup_detector = $PowerupDetector
+onready var camera_follow = $CameraFollow
 
+# warning-ignore:unused_signal
 signal hit_door(door)
 
 func set_invincible(value):
@@ -49,9 +50,11 @@ func set_invincible(value):
 func _ready():
 	PlayerStats.connect("player_died", self, "_on_died")
 	MainInstances.Player = self
+	call_deferred("assign_world_camera")
 
-func _exit_tree():
+func queue_free():
 	MainInstances.Player = null
+	.queue_free()
 
 func _physics_process(delta):
 	just_jumped = false
@@ -83,6 +86,9 @@ func _physics_process(delta):
 		fire_bullet()
 	if Input.is_action_just_pressed("fire_missile") and fire_bullet_timer.time_left == 0 and PlayerStats.missiles > 0 and PlayerStats.missiles_unlocked:
 		fire_missile()
+
+func assign_world_camera():
+	camera_follow.remote_path = MainInstances.WorldCamera.get_path()
 
 func save():
 	var save_dictionary = {
