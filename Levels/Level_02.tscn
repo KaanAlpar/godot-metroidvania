@@ -12,7 +12,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 31 )
 
-[node name="Level_02" instance=ExtResource( 1 )]
+[node name="Level_02" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="TileMap" parent="." index="0"]
@@ -40,44 +40,47 @@ rotation = 1.5708
 [node name="Spikes9" parent="SpikesCollection" index="4" instance=ExtResource( 3 )]
 position = Vector2( 64, 160 )
 
-[node name="Spikes10" parent="SpikesCollection" index="5" instance=ExtResource( 3 )]
+[node name="Spikes17" parent="SpikesCollection" index="5" instance=ExtResource( 3 )]
+position = Vector2( 160, 144 )
+
+[node name="Spikes10" parent="SpikesCollection" index="6" instance=ExtResource( 3 )]
 position = Vector2( 128, 160 )
 
-[node name="Spikes11" parent="SpikesCollection" index="6" instance=ExtResource( 3 )]
+[node name="Spikes11" parent="SpikesCollection" index="7" instance=ExtResource( 3 )]
 position = Vector2( 272, 160 )
 
-[node name="Spikes12" parent="SpikesCollection" index="7" instance=ExtResource( 3 )]
+[node name="Spikes12" parent="SpikesCollection" index="8" instance=ExtResource( 3 )]
 position = Vector2( 224, 144 )
 
-[node name="Spikes13" parent="SpikesCollection" index="8" instance=ExtResource( 3 )]
+[node name="Spikes13" parent="SpikesCollection" index="9" instance=ExtResource( 3 )]
 position = Vector2( 224, 48 )
 rotation = 3.14159
 
-[node name="Spikes14" parent="SpikesCollection" index="9" instance=ExtResource( 3 )]
+[node name="Spikes14" parent="SpikesCollection" index="10" instance=ExtResource( 3 )]
 position = Vector2( 112, 32 )
 rotation = 3.14159
 
-[node name="Spikes15" parent="SpikesCollection" index="10" instance=ExtResource( 3 )]
+[node name="Spikes15" parent="SpikesCollection" index="11" instance=ExtResource( 3 )]
 position = Vector2( 80, 48 )
 rotation = 3.14159
 
-[node name="Spikes16" parent="SpikesCollection" index="11" instance=ExtResource( 3 )]
+[node name="Spikes16" parent="SpikesCollection" index="12" instance=ExtResource( 3 )]
 position = Vector2( 272, 48 )
 rotation = 3.14159
 
-[node name="Spikes4" parent="SpikesCollection" index="12" instance=ExtResource( 3 )]
+[node name="Spikes4" parent="SpikesCollection" index="13" instance=ExtResource( 3 )]
 position = Vector2( 288, 48 )
 rotation = -1.5708
 
-[node name="Spikes5" parent="SpikesCollection" index="13" instance=ExtResource( 3 )]
+[node name="Spikes5" parent="SpikesCollection" index="14" instance=ExtResource( 3 )]
 position = Vector2( 288, 64 )
 rotation = -1.5708
 
-[node name="Spikes6" parent="SpikesCollection" index="14" instance=ExtResource( 3 )]
+[node name="Spikes6" parent="SpikesCollection" index="15" instance=ExtResource( 3 )]
 position = Vector2( 288, 80 )
 rotation = -1.5708
 
-[node name="Spikes8" parent="SpikesCollection" index="15" instance=ExtResource( 3 )]
+[node name="Spikes8" parent="SpikesCollection" index="16" instance=ExtResource( 3 )]
 position = Vector2( 288, 96 )
 rotation = -1.5708
 
@@ -91,6 +94,7 @@ connection = ExtResource( 6 )
 new_level_path = "res://Levels/Level_01.tscn"
 
 [node name="Trigger" parent="." index="4" instance=ExtResource( 7 )]
+editor/display_folded = true
 position = Vector2( 160, 144 )
 
 [node name="CollisionShape2D" parent="Trigger" index="0"]

@@ -11,13 +11,13 @@ script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 editor/display_folded = true
-position = Vector2( 160, 150 )
+position = Vector2( 110, 100 )
 
 [node name="CameraFollow" parent="Player" index="4"]
 remote_path = NodePath("../../Camera")
 
 [node name="Camera" parent="." instance=ExtResource( 3 )]
-position = Vector2( 160, 142 )
+position = Vector2( 110, 92 )
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
 
