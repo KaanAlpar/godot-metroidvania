@@ -4,9 +4,12 @@ const BRICK_LAYER_BIT = 4
 
 const EnemyDeathEffect = preload("res://Effects/EnemyDeathEffect.tscn")
 
+func _ready():
+	SoundFX.play("Explosion")
+
 func _on_Hitbox_area_entered(area):
 	._on_Hitbox_area_entered(area)
-	Events.emit_signal("add_screenshake", 0.25, 0.5)
+	Events.emit_signal("add_screenshake", 0.15, 0.3)
 
 func _on_Hitbox_body_entered(body):
 	if body.get_collision_layer_bit(BRICK_LAYER_BIT):

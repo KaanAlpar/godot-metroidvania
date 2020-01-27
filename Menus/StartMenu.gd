@@ -4,10 +4,11 @@ func _ready():
 	VisualServer.set_default_clear_color(Color.black)
 
 func _on_StartButton_pressed():
-	# warning-ignore:return_value_discarded
+	SoundFX.play("Click",1 , -30)
 	get_tree().change_scene("res://World.tscn")
 
 func _on_LoadButton_pressed():
+	SoundFX.play("Click", 1, -30)
 	SaverAndLoader.is_loading = true
 	get_tree().change_scene("res://World.tscn")
 
