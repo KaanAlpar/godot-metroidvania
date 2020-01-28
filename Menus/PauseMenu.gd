@@ -13,7 +13,8 @@ func set_paused(value):
 
 # warning-ignore:unused_argument
 func _process(delta):
-	if Input.is_action_just_pressed("pause"):
+	var player_is_alive = get_tree().get_nodes_in_group("Player").size() > 0
+	if Input.is_action_just_pressed("pause") and player_is_alive:
 		self.paused = !paused
 
 func _on_ResumeButton_pressed():
